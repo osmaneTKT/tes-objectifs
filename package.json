@@ -5,12 +5,17 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint . --format eslint-formatter-checkstyle --output-file eslint-report.xml",
     "start": "nodemon app.js",
     "start-server": "node app.js"
   },
   "author": "Maximilian Schwarzmüller",
   "license": "ISC",
   "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "eslint": "^9.19.0",
+    "eslint-formatter-checkstyle": "^8.40.0",
+    "globals": "^15.14.0",
     "nodemon": "^1.18.3"
   },
   "dependencies": {
