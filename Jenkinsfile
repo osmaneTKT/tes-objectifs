@@ -31,7 +31,7 @@ pipeline {
             steps {
                 echo 'Running ESLint...'
                 script {
-                    def lintResult = sh(script: 'npm run lint', returnStatus: true)
+                    def lintResult = sh(script: 'eslint . --ignore-pattern Dockerfile --format eslint-formatter-checkstyle --output-file eslint-report.xml --max-warnings=0', returnStatus: true)
                     if (lintResult != 0) {
                         echo 'ESLint found issues, but continuing...'
                     }
@@ -45,6 +45,7 @@ pipeline {
                 }
             }
         }
+
 
        
 
