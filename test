@@ -1,0 +1,19 @@
+stage("UploadArtifact"){
+            steps{
+                nexusArtifactUploader(
+                  nexusVersion: 'nexus3',
+                  protocol: 'http',
+                  nexusUrl: '172.31.16.207:8081',
+                  groupId: 'QA',
+                  version: "${env.BUILD_TIMESTAMP}",
+                  repository: 'node-app',
+                  credentialsId: 'nexuslogin',
+                  artifacts: [
+                    [artifactId: 'vproapp',
+                     classifier: '',
+                     file: 'app.tar.gz',
+                     type: 'tar.gz']
+                  ]
+                )
+            }
+        }

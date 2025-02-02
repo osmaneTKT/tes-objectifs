@@ -1,7 +1,16 @@
+def COLOR_MAP = [
+    'SUCCESS': 'good', 
+    'FAILURE': 'danger',
+]
 pipeline {
     agent any
     tools {
         nodejs "nodejs"  // Configure Node.js installé dans Jenkins
+    }
+    environment {
+        registryCredential = 'ecr:us-east-1:awscreds'
+        appRegistry = "340752842134.dkr.ecr.us-east-1.amazonaws.com/node-app"
+        vprofileRegistry = "https://340752842134.dkr.ecr.us-east-1.amazonaws.com"
     }
     stages {
         stage('Fetch Code') {
@@ -42,7 +51,7 @@ pipeline {
         stage('Package Application') {
             steps {
                 echo 'Packaging application...'
-                sh 'tar -czf app.tar.gz app.js package-lock.json package.json controllers/ models/ routes/ views/ public/ util/'
+                sh 'tar -czf app.tar.gz app.js package-lock.json package.json controllers/ models/ routes/ data/ views/ public/ node_modules/ util/'
 
                 // Vérifie si le fichier app.tar.gz a été généré
                 sh 'ls -l app.tar.gz'
@@ -75,6 +84,40 @@ pipeline {
                         -Dsonar.eslint.reportPaths=eslint-report.xml'''
                 }
             }
+        }
+        stage("quality gate"){
+            steps{
+                timeout(time:1,unit:"HOURS"){
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+        stage('Build App Image') {
+            steps {
+       
+                script {
+                    dockerImage = docker.build( appRegistry + ":$BUILD_NUMBER", "./Docker-files/app/multistage/")
+                }
+            }
+        }
+
+        stage('Upload App Image') {
+            steps{
+                script {
+                    docker.withRegistry( vprofileRegistry, registryCredential ) {
+                        dockerImage.push("$BUILD_NUMBER")
+                        dockerImage.push('latest')
+                    }
+                }
+            }
+        }
+    }
+    post {
+        always {
+            echo 'Slack Notifications.'
+            slackSend channel: '#devopscicd',
+                color: COLOR_MAP[currentBuild.currentResult],
+                message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
         }
     }
 }
