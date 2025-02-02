@@ -13,10 +13,8 @@ RUN npm install --only=production
 # Copier le reste de l’application (en excluant certains fichiers avec `.dockerignore`)
 COPY . .
 
-# Vérifier la sécurité en s'assurant que les fichiers copiés sont bien gérés
+# Vérifier que les fichiers ont bien été copiés
 RUN ls -la /app
-
----
 
 # === 🚀 STAGE 2 : RUN STAGE ===
 FROM node:20.14.0-alpine
