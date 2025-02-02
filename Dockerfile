@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN npm install --only=production
 
 # Copier le reste de l’application (en excluant certains fichiers avec `.dockerignore`)
-COPY . .  # ✅ Ici, on enlève la ligne de commentaire non valide
+COPY . .
 
 # Vérifier que les fichiers ont bien été copiés
 RUN ls -la /app
