@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint":  "eslint . --format eslint-formatter-checkstyle --output-file eslint-report.xml --max-warnings=0",
+    "lint": "eslint . --format eslint-formatter-checkstyle --output-file eslint-report.xml --max-warnings=0",
     "start": "nodemon app.js",
     "start-server": "node app.js"
   },
@@ -16,7 +16,8 @@
     "eslint": "^9.19.0",
     "eslint-formatter-checkstyle": "^8.40.0",
     "globals": "^15.14.0",
-    "nodemon": "^1.18.3"
+    "nodemon": "^1.18.3",
+    "typescript-eslint": "^8.22.0"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
