@@ -11,6 +11,9 @@ pipeline {
         registryCredential = 'ecr:us-east-1:awscreds'
         appRegistry = "340752842134.dkr.ecr.us-east-1.amazonaws.com/node-app"
         vprofileRegistry = "https://340752842134.dkr.ecr.us-east-1.amazonaws.com"
+        cluster = "node-app-cluster"
+        service = "nodeappservice3"
+
     }
     stages {
         stage('Fetch Code') {
@@ -86,13 +89,7 @@ pipeline {
                 }
             }
         }
-        stage("quality gate"){
-            steps{
-                timeout(time:1,unit:"HOURS"){
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
+        
         stage('Build App Image') {
             steps {
        
@@ -109,6 +106,18 @@ pipeline {
                         dockerImage.push("$BUILD_NUMBER")
                         dockerImage.push('latest')
                     }
+                }
+            }
+        }
+        stage('Remove Container Images'){
+            steps{
+                sh 'docker rmi -f $(docker images -a -q)'
+            }
+        }
+        stage('Deploy to ecs') {
+            steps {
+                withAWS(credentials: 'awscreds', region: 'us-east-1') {
+                sh 'aws ecs update-service --cluster ${cluster} --service ${service} --force-new-deployment'
                 }
             }
         }

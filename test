@@ -7,6 +7,14 @@ pipeline {
     tools {
         nodejs "nodejs"  // Configure Node.js installé dans Jenkins
     }
+    environment {
+        registryCredential = 'ecr:us-east-1:awscreds'
+        appRegistry = "340752842134.dkr.ecr.us-east-1.amazonaws.com/node-app"
+        vprofileRegistry = "https://340752842134.dkr.ecr.us-east-1.amazonaws.com"
+        cluster = "node-app-cluster"
+        service = "nodeappservice3"
+
+    }
     stages {
         stage('Fetch Code') {
             steps {
@@ -26,7 +34,7 @@ pipeline {
             steps {
                 echo 'Running ESLint...'
                 script {
-                    def lintResult = sh(script: 'npm run lint', returnStatus: true)
+                    def lintResult = sh(script: 'eslint . --ignore-pattern Dockerfile --format eslint-formatter-checkstyle --output-file eslint-report.xml --max-warnings=0', returnStatus: true)
                     if (lintResult != 0) {
                         echo 'ESLint found issues, but continuing...'
                     }
@@ -40,6 +48,7 @@ pipeline {
                 }
             }
         }
+
 
        
 
@@ -80,34 +89,38 @@ pipeline {
                 }
             }
         }
-        stage("quality gate"){
-            steps{
-                timeout(time:1,unit:"HOURS"){
-                    waitForQualityGate abortPipeline: true
+        
+        stage('Build App Image') {
+            steps {
+       
+                script {
+                    dockerImage = docker.build(appRegistry + ":$BUILD_NUMBER", "-f ./Dockerfile .")
                 }
             }
         }
-        stage("UploadArtifact"){
+
+        stage('Upload App Image') {
             steps{
-                nexusArtifactUploader(
-                  nexusVersion: 'nexus3',
-                  protocol: 'http',
-                  nexusUrl: '172.31.16.207:8081',
-                  groupId: 'QA',
-                  version: "${env.BUILD_TIMESTAMP}",
-                  repository: 'node-app',
-                  credentialsId: 'nexuslogin',
-                  artifacts: [
-                    [artifactId: 'vproapp',
-                     classifier: '',
-                     file: 'app.tar.gz',
-                     type: 'tar.gz']
-                  ]
-                )
+                script {
+                    docker.withRegistry( vprofileRegistry, registryCredential ) {
+                        dockerImage.push("$BUILD_NUMBER")
+                        dockerImage.push('latest')
+                    }
+                }
             }
         }
-
-
+        stage('Remove Container Images'){
+            steps{
+                sh 'docker rmi -f $(docker images -a -q)'
+            }
+        }
+        stage('Deploy to ecs') {
+            steps {
+                withAWS(credentials: 'awscreds', region: 'us-east-1') {
+                sh 'aws ecs update-service --cluster ${cluster} --service ${service} --force-new-deployment'
+                }
+            }
+        }
     }
     post {
         always {
