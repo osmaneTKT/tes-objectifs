@@ -7,17 +7,20 @@
 .form-control textarea {
   display: block;
   width: 100%;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
 }
 
 .form-control input,
 .form-control textarea {
-  border: 1px solid #a1a1a1;
-  font: inherit;
-  border-radius: 2px;
+  border: 1px solid #ccc;
+  padding: 0.75rem;
+  border-radius: 8px;
+  transition: border-color 0.3s ease-in-out;
 }
 
 .form-control input:focus,
 .form-control textarea:focus {
-  outline-color: #00695c;
+  outline: none;
+  border-color: #2563eb;
 }

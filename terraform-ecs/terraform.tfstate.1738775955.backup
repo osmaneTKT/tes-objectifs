@@ -1,7 +1,7 @@
 {
   "version": 4,
   "terraform_version": "1.10.5",
-  "serial": 68,
+  "serial": 40,
   "lineage": "d18f176b-0219-4bdc-f512-c481845ab4c5",
   "outputs": {
     "cluster_arn": {
@@ -43,94 +43,6 @@
           },
           "sensitive_attributes": [],
           "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjAifQ=="
-        }
-      ]
-    },
-    {
-      "mode": "managed",
-      "type": "aws_ecs_service",
-      "name": "my_service",
-      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
-      "instances": [
-        {
-          "schema_version": 1,
-          "attributes": {
-            "alarms": [],
-            "availability_zone_rebalancing": "DISABLED",
-            "capacity_provider_strategy": [],
-            "cluster": "arn:aws:ecs:us-east-1:340752842134:cluster/node-app-cluster",
-            "deployment_circuit_breaker": [
-              {
-                "enable": false,
-                "rollback": false
-              }
-            ],
-            "deployment_controller": [
-              {
-                "type": "ECS"
-              }
-            ],
-            "deployment_maximum_percent": 200,
-            "deployment_minimum_healthy_percent": 100,
-            "desired_count": 1,
-            "enable_ecs_managed_tags": false,
-            "enable_execute_command": false,
-            "force_delete": null,
-            "force_new_deployment": null,
-            "health_check_grace_period_seconds": 0,
-            "iam_role": "/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
-            "id": "arn:aws:ecs:us-east-1:340752842134:service/node-app-cluster/nodeappservice3",
-            "launch_type": "FARGATE",
-            "load_balancer": [
-              {
-                "container_name": "node-app-cont",
-                "container_port": 3000,
-                "elb_name": "",
-                "target_group_arn": "arn:aws:elasticloadbalancing:us-east-1:340752842134:targetgroup/ecs-node-a-nodeappservice3/457be9942bf5ee39"
-              }
-            ],
-            "name": "nodeappservice3",
-            "network_configuration": [
-              {
-                "assign_public_ip": true,
-                "security_groups": [
-                  "sg-07ab08dbeb4b32c84"
-                ],
-                "subnets": [
-                  "subnet-00b832f45a83e7ea8",
-                  "subnet-071f03f664fa3417b",
-                  "subnet-09268996b273aa2b0",
-                  "subnet-0abee90b6b482f3e5",
-                  "subnet-0dbb0281ec79b8779",
-                  "subnet-0ecdfbeaafa257c29"
-                ]
-              }
-            ],
-            "ordered_placement_strategy": [],
-            "placement_constraints": [],
-            "platform_version": "LATEST",
-            "propagate_tags": "NONE",
-            "scheduling_strategy": "REPLICA",
-            "service_connect_configuration": [],
-            "service_registries": [],
-            "tags": {},
-            "tags_all": {},
-            "task_definition": "arn:aws:ecs:us-east-1:340752842134:task-definition/node-app-task2:3",
-            "timeouts": null,
-            "triggers": {},
-            "volume_configuration": [],
-            "vpc_lattice_configurations": [],
-            "wait_for_steady_state": false
-          },
-          "sensitive_attributes": [],
-          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
-          "dependencies": [
-            "aws_ecs_cluster.my_cluster",
-            "aws_ecs_task_definition.my_task",
-            "aws_lb_target_group.ecs_tg",
-            "aws_security_group.alb_sg",
-            "aws_security_group.ecs_sg"
-          ]
         }
       ]
     },
@@ -197,8 +109,8 @@
                 "prefix": ""
               }
             ],
-            "arn": "arn:aws:elasticloadbalancing:us-east-1:340752842134:loadbalancer/app/nodeappplbsecs3/9c3f09680bf313ee",
-            "arn_suffix": "app/nodeappplbsecs3/9c3f09680bf313ee",
+            "arn": "arn:aws:elasticloadbalancing:us-east-1:340752842134:loadbalancer/app/nodeappplbsecs3/0132fe8203148fe4",
+            "arn_suffix": "app/nodeappplbsecs3/0132fe8203148fe4",
             "client_keep_alive": 3600,
             "connection_logs": [
               {
@@ -209,7 +121,7 @@
             ],
             "customer_owned_ipv4_pool": "",
             "desync_mitigation_mode": "defensive",
-            "dns_name": "nodeappplbsecs3-1865673964.us-east-1.elb.amazonaws.com",
+            "dns_name": "nodeappplbsecs3-1025081368.us-east-1.elb.amazonaws.com",
             "dns_record_client_routing_policy": null,
             "drop_invalid_header_fields": false,
             "enable_cross_zone_load_balancing": true,
@@ -220,7 +132,7 @@
             "enable_xff_client_port": false,
             "enable_zonal_shift": false,
             "enforce_security_group_inbound_rules_on_private_link_traffic": "",
-            "id": "arn:aws:elasticloadbalancing:us-east-1:340752842134:loadbalancer/app/nodeappplbsecs3/9c3f09680bf313ee",
+            "id": "arn:aws:elasticloadbalancing:us-east-1:340752842134:loadbalancer/app/nodeappplbsecs3/0132fe8203148fe4",
             "idle_timeout": 60,
             "internal": false,
             "ip_address_type": "ipv4",
@@ -229,7 +141,7 @@
             "name_prefix": "",
             "preserve_host_header": false,
             "security_groups": [
-              "sg-0c368f74635761e4b"
+              "sg-009c71331caff3396"
             ],
             "subnet_mapping": [
               {
@@ -283,8 +195,12 @@
               "subnet-0dbb0281ec79b8779",
               "subnet-0ecdfbeaafa257c29"
             ],
-            "tags": {},
-            "tags_all": {},
+            "tags": {
+              "Name": "ECS-ALB"
+            },
+            "tags_all": {
+              "Name": "ECS-ALB"
+            },
             "timeouts": null,
             "vpc_id": "vpc-0e939fdbc65455851",
             "xff_header_processing_mode": "append",
@@ -300,70 +216,6 @@
     },
     {
       "mode": "managed",
-      "type": "aws_lb_listener",
-      "name": "ecs_listener",
-      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
-      "instances": [
-        {
-          "schema_version": 0,
-          "attributes": {
-            "alpn_policy": null,
-            "arn": "arn:aws:elasticloadbalancing:us-east-1:340752842134:listener/app/nodeappplbsecs3/9c3f09680bf313ee/3c72eff94648597c",
-            "certificate_arn": null,
-            "default_action": [
-              {
-                "authenticate_cognito": [],
-                "authenticate_oidc": [],
-                "fixed_response": [],
-                "forward": [],
-                "order": 1,
-                "redirect": [],
-                "target_group_arn": "arn:aws:elasticloadbalancing:us-east-1:340752842134:targetgroup/ecs-node-a-nodeappservice3/457be9942bf5ee39",
-                "type": "forward"
-              }
-            ],
-            "id": "arn:aws:elasticloadbalancing:us-east-1:340752842134:listener/app/nodeappplbsecs3/9c3f09680bf313ee/3c72eff94648597c",
-            "load_balancer_arn": "arn:aws:elasticloadbalancing:us-east-1:340752842134:loadbalancer/app/nodeappplbsecs3/9c3f09680bf313ee",
-            "mutual_authentication": [],
-            "port": 80,
-            "protocol": "HTTP",
-            "routing_http_request_x_amzn_mtls_clientcert_header_name": null,
-            "routing_http_request_x_amzn_mtls_clientcert_issuer_header_name": null,
-            "routing_http_request_x_amzn_mtls_clientcert_leaf_header_name": null,
-            "routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name": null,
-            "routing_http_request_x_amzn_mtls_clientcert_subject_header_name": null,
-            "routing_http_request_x_amzn_mtls_clientcert_validity_header_name": null,
-            "routing_http_request_x_amzn_tls_cipher_suite_header_name": null,
-            "routing_http_request_x_amzn_tls_version_header_name": null,
-            "routing_http_response_access_control_allow_credentials_header_value": "",
-            "routing_http_response_access_control_allow_headers_header_value": "",
-            "routing_http_response_access_control_allow_methods_header_value": "",
-            "routing_http_response_access_control_allow_origin_header_value": "",
-            "routing_http_response_access_control_expose_headers_header_value": "",
-            "routing_http_response_access_control_max_age_header_value": "",
-            "routing_http_response_content_security_policy_header_value": "",
-            "routing_http_response_server_enabled": false,
-            "routing_http_response_strict_transport_security_header_value": "",
-            "routing_http_response_x_content_type_options_header_value": "",
-            "routing_http_response_x_frame_options_header_value": "",
-            "ssl_policy": "",
-            "tags": {},
-            "tags_all": {},
-            "tcp_idle_timeout_seconds": null,
-            "timeouts": null
-          },
-          "sensitive_attributes": [],
-          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsInVwZGF0ZSI6MzAwMDAwMDAwMDAwfX0=",
-          "dependencies": [
-            "aws_lb.ecs_alb",
-            "aws_lb_target_group.ecs_tg",
-            "aws_security_group.alb_sg"
-          ]
-        }
-      ]
-    },
-    {
-      "mode": "managed",
       "type": "aws_lb_target_group",
       "name": "ecs_tg",
       "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
@@ -371,8 +223,8 @@
         {
           "schema_version": 0,
           "attributes": {
-            "arn": "arn:aws:elasticloadbalancing:us-east-1:340752842134:targetgroup/ecs-node-a-nodeappservice3/457be9942bf5ee39",
-            "arn_suffix": "targetgroup/ecs-node-a-nodeappservice3/457be9942bf5ee39",
+            "arn": "arn:aws:elasticloadbalancing:us-east-1:340752842134:targetgroup/ecs-node-a-nodeappservice3/26858b763716dc56",
+            "arn_suffix": "targetgroup/ecs-node-a-nodeappservice3/26858b763716dc56",
             "connection_termination": null,
             "deregistration_delay": "300",
             "health_check": [
@@ -388,12 +240,10 @@
                 "unhealthy_threshold": 3
               }
             ],
-            "id": "arn:aws:elasticloadbalancing:us-east-1:340752842134:targetgroup/ecs-node-a-nodeappservice3/457be9942bf5ee39",
+            "id": "arn:aws:elasticloadbalancing:us-east-1:340752842134:targetgroup/ecs-node-a-nodeappservice3/26858b763716dc56",
             "ip_address_type": "ipv4",
             "lambda_multi_value_headers_enabled": false,
-            "load_balancer_arns": [
-              "arn:aws:elasticloadbalancing:us-east-1:340752842134:loadbalancer/app/nodeappplbsecs3/9c3f09680bf313ee"
-            ],
+            "load_balancer_arns": [],
             "load_balancing_algorithm_type": "round_robin",
             "load_balancing_anomaly_mitigation": "off",
             "load_balancing_cross_zone_enabled": "use_load_balancer_configuration",
@@ -413,8 +263,12 @@
                 "type": "lb_cookie"
               }
             ],
-            "tags": {},
-            "tags_all": {},
+            "tags": {
+              "Name": "ECS-TargetGroup"
+            },
+            "tags_all": {
+              "Name": "ECS-TargetGroup"
+            },
             "target_failover": [
               {
                 "on_deregistration": null,
@@ -460,43 +314,43 @@
         {
           "schema_version": 1,
           "attributes": {
-            "arn": "arn:aws:ec2:us-east-1:340752842134:security-group/sg-0c368f74635761e4b",
+            "arn": "arn:aws:ec2:us-east-1:340752842134:security-group/sg-009c71331caff3396",
             "description": "Security Group for ECS ALB",
             "egress": [
               {
-                "cidr_blocks": [
-                  "0.0.0.0/0"
-                ],
+                "cidr_blocks": [],
                 "description": "",
-                "from_port": 0,
+                "from_port": 3000,
                 "ipv6_cidr_blocks": [],
                 "prefix_list_ids": [],
-                "protocol": "-1",
-                "security_groups": [],
+                "protocol": "tcp",
+                "security_groups": [
+                  "sg-0746894d9152c28f4"
+                ],
                 "self": false,
-                "to_port": 0
+                "to_port": 3000
               }
             ],
-            "id": "sg-0c368f74635761e4b",
+            "id": "sg-009c71331caff3396",
             "ingress": [
               {
                 "cidr_blocks": [
                   "0.0.0.0/0"
                 ],
-                "description": "Allow all inbound traffic from any source (IPv4)",
-                "from_port": 0,
+                "description": "",
+                "from_port": 443,
                 "ipv6_cidr_blocks": [],
                 "prefix_list_ids": [],
-                "protocol": "-1",
+                "protocol": "tcp",
                 "security_groups": [],
                 "self": false,
-                "to_port": 0
+                "to_port": 443
               },
               {
                 "cidr_blocks": [
                   "0.0.0.0/0"
                 ],
-                "description": null,
+                "description": "",
                 "from_port": 80,
                 "ipv6_cidr_blocks": [],
                 "prefix_list_ids": [],
@@ -510,85 +364,17 @@
             "name_prefix": "",
             "owner_id": "340752842134",
             "revoke_rules_on_delete": false,
-            "tags": {},
-            "tags_all": {},
+            "tags": {
+              "Name": "alb-security-group"
+            },
+            "tags_all": {
+              "Name": "alb-security-group"
+            },
             "timeouts": null,
             "vpc_id": "vpc-0e939fdbc65455851"
           },
           "sensitive_attributes": [],
           "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6OTAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0="
-        }
-      ]
-    },
-    {
-      "mode": "managed",
-      "type": "aws_security_group",
-      "name": "ecs_sg",
-      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
-      "instances": [
-        {
-          "schema_version": 1,
-          "attributes": {
-            "arn": "arn:aws:ec2:us-east-1:340752842134:security-group/sg-07ab08dbeb4b32c84",
-            "description": "Security Group for ECS tasks",
-            "egress": [
-              {
-                "cidr_blocks": [
-                  "0.0.0.0/0"
-                ],
-                "description": "",
-                "from_port": 0,
-                "ipv6_cidr_blocks": [],
-                "prefix_list_ids": [],
-                "protocol": "-1",
-                "security_groups": [],
-                "self": false,
-                "to_port": 0
-              }
-            ],
-            "id": "sg-07ab08dbeb4b32c84",
-            "ingress": [
-              {
-                "cidr_blocks": [
-                  "0.0.0.0/0"
-                ],
-                "description": "Allow all inbound traffic from any source (IPv4)",
-                "from_port": 0,
-                "ipv6_cidr_blocks": [],
-                "prefix_list_ids": [],
-                "protocol": "-1",
-                "security_groups": [],
-                "self": false,
-                "to_port": 0
-              },
-              {
-                "cidr_blocks": [],
-                "description": null,
-                "from_port": 3000,
-                "ipv6_cidr_blocks": [],
-                "prefix_list_ids": [],
-                "protocol": "tcp",
-                "security_groups": [
-                  "sg-0c368f74635761e4b"
-                ],
-                "self": false,
-                "to_port": 3000
-              }
-            ],
-            "name": "ecs-service-sg",
-            "name_prefix": "",
-            "owner_id": "340752842134",
-            "revoke_rules_on_delete": false,
-            "tags": {},
-            "tags_all": {},
-            "timeouts": null,
-            "vpc_id": "vpc-0e939fdbc65455851"
-          },
-          "sensitive_attributes": [],
-          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6OTAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
-          "dependencies": [
-            "aws_security_group.alb_sg"
-          ]
         }
       ]
     }

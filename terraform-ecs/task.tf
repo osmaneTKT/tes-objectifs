@@ -2,8 +2,8 @@ resource "aws_ecs_task_definition" "my_task" {
   family                   = "node-app-task2"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
-  cpu                      = "1024"  
-  memory                   = "2048" 
+  cpu                      = "1024"
+  memory                   = "2048"
   execution_role_arn       = "arn:aws:iam::340752842134:role/ecsTaskExecutionRole"
   task_role_arn            = "arn:aws:iam::340752842134:role/ecsTaskExecutionRole"
 
@@ -14,11 +14,11 @@ resource "aws_ecs_task_definition" "my_task" {
 
   container_definitions = jsonencode([
     {
-      name        = "node-app-cont"
-      image       = "340752842134.dkr.ecr.us-east-1.amazonaws.com/node-app"
-      #cpu         = 1024
-      #memory      = 2048
-      essential   = true
+      name      = "node-app-cont"
+      image     = "340752842134.dkr.ecr.us-east-1.amazonaws.com/node-app"
+      cpu       = 1024
+      memory    = 2048
+      essential = true
 
       portMappings = [
         {
@@ -42,12 +42,12 @@ resource "aws_ecs_task_definition" "my_task" {
         }
       }
 
-      environment       = []
-      environmentFiles  = []
-      mountPoints       = []
-      systemControls    = []
-      ulimits           = []
-      volumesFrom       = []
+      environment      = []
+      environmentFiles = []
+      mountPoints      = []
+      systemControls   = []
+      ulimits          = []
+      volumesFrom      = []
     }
   ])
 }
