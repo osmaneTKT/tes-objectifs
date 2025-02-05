@@ -1,26 +1,44 @@
 .form-control {
   margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.form-control label,
-.form-control input,
-.form-control textarea {
-  display: block;
-  width: 100%;
-  margin-bottom: 0.5rem;
+.form-control label {
+  font-weight: bold;
+  color: #333;
   font-size: 1rem;
 }
 
 .form-control input,
 .form-control textarea {
-  border: 1px solid #ccc;
+  width: 100%;
   padding: 0.75rem;
+  border: 1px solid #ccc;
   border-radius: 8px;
-  transition: border-color 0.3s ease-in-out;
+  font-size: 1rem;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .form-control input:focus,
 .form-control textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(37, 99, 235, 0.5);
   outline: none;
-  border-color: #2563eb;
+}
+
+.form-control button {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out;
+}
+
+.form-control button:hover {
+  background: #1e40af;
 }
