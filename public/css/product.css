@@ -2,24 +2,24 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1.5rem;
-    padding: 2rem;
+    gap: 2rem;
+    padding: 2rem 1rem;
     background-color: var(--bg-light);
   }
   
   .product-item {
-    width: min(22rem, 95%);
+    width: 320px;
     background: white;
-    border-radius: var(--border-radius);
+    border-radius: 16px;
     padding: 1.5rem;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   }
   
   .product-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px);
+    box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.2);
   }
   
   .product__title {
@@ -30,7 +30,7 @@
   }
   
   .product__price {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 600;
     color: var(--primary-color);
     margin-bottom: 0.5rem;
@@ -39,7 +39,15 @@
   .product__description {
     font-size: 1rem;
     color: #555;
-    line-height: 1.5;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .product-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+    border-radius: 12px;
   }
   
   button {
@@ -57,4 +65,37 @@
   
   button:hover {
     background: #0056b3;
+  }
+  
+  /* Navigation */
+  .main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: linear-gradient(to right, #2563eb, #38bdf8);
+    color: white;
+    font-size: 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .main-header__nav {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .main-header__nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .main-header__nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
   }
