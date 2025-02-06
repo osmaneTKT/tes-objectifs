@@ -5,7 +5,7 @@ def COLOR_MAP = [
 pipeline {
     agent any
     tools {
-        nodejs "nodejs"  // Configure Node.js installé dans Jenkins
+        nodejs "nodejs" 
     }
     environment {
         registryCredential = 'ecr:us-east-1:awscreds'
@@ -26,7 +26,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo 'Installing dependencies...'
-                sh 'npm install'  // Installe les dépendances Node.js
+                sh 'npm install'  
             }
         }
 
@@ -50,35 +50,15 @@ pipeline {
         }
 
 
-       
-
-        stage('Package Application') {
-            steps {
-                echo 'Packaging application...'
-                sh 'tar -czf app.tar.gz app.js package-lock.json package.json controllers/ models/ routes/ data/ views/ public/ node_modules/ util/'
-
-                // Vérifie si le fichier app.tar.gz a été généré
-                sh 'ls -l app.tar.gz'
-            }
-
-            post {
-                success {
-                    echo 'Archiving application package...'
-                    archiveArtifacts artifacts: 'app.tar.gz', fingerprint: true
-                }
-                failure {
-                    echo 'Packaging failed. Please check the logs.'
-                }
-            }
-        }
+    
 
         stage('Sonar Code Analysis') {
             environment {
-                scannerHome = tool 'sonar6.2'  // Nom de l'outil configuré dans Jenkins
+                scannerHome = tool 'sonar6.2'  
             }
             steps {
                 echo 'Running SonarQube analysis...'
-                withSonarQubeEnv('sonarserver') {  // Nom du serveur SonarQube configuré dans Jenkins
+                withSonarQubeEnv('sonarserver') {  
                     sh '''${scannerHome}/bin/sonar-scanner \
                         -Dsonar.projectKey=nodejs-app \
                         -Dsonar.projectName=nodejs-app \
@@ -89,6 +69,15 @@ pipeline {
                 }
             }
         }
+        /*
+        stage("Quality Gate") {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+         */
         
         stage('Build App Image') {
             steps {

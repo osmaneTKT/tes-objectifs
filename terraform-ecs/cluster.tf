@@ -1,6 +1,6 @@
 
 resource "aws_ecs_cluster" "my_cluster" {
-  name = "node-app-cluster" # Nom du cluster
+  name = "node-app-cluster" 
 
   setting {
     name  = "containerInsights"

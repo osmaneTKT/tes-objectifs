@@ -42,12 +42,7 @@ resource "aws_ecs_task_definition" "my_task" {
         }
       }
 
-      environment      = []
-      environmentFiles = []
-      mountPoints      = []
-      systemControls   = []
-      ulimits          = []
-      volumesFrom      = []
+      
     }
   ])
 }
